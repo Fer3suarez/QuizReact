@@ -34,7 +34,7 @@ function finished(state = false, action = {}) {
 function currentQuestion(state = 0, action = {}) {
 	switch(action.type) {
 		case INIT_QUESTIONS:
-			return state;
+			return state = 0;
 		case CHANGE_QUESTION:
 			var newState;
 			action.payload.buttonName === "Next" ? newState = state + 1:newState = state - 1;
