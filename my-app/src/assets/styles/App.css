@@ -32,7 +32,7 @@
 }
 #app {
   background-color: #B3C6E1;
-  width: 1366px;
+  width: 100%;
   height: 625px;
 }
 #navbar {
@@ -48,7 +48,8 @@
 #actionbar {
   background-color: #B3C6E1;
   height: auto;
-  width: auto;
+  width: 100%;
+  text-align: center;
 }
 #button {
   padding: 5px;

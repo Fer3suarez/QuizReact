@@ -6,8 +6,8 @@ export default class Countdown extends React.Component {
 		super(props);
 		this.state = {
 			time: {},
-			min: 0,
-			sec: 50
+			min: 1,
+			sec: 10
 		};
 		this.timer = 0;
 		this.start = this.start.bind(this);
