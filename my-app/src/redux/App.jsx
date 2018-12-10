@@ -14,6 +14,7 @@ class App extends Component {
     this.appOnAnswer = this.appOnAnswer.bind(this);
     this.onClick = this.onClick.bind(this);
     this.download = this.download.bind(this);
+    this.final = this.final.bind(this);
   }
   componentDidMount() {
       this.download();
@@ -42,6 +43,11 @@ class App extends Component {
       this.props.dispatch(changeQuestion(buttonName));
     }
   }  
+  final(finalTime) {
+    if (finalTime === true) {
+      this.props.dispatch(submit(this.props.questions));
+    }
+  }
 
   render() {
     return ( 
@@ -52,7 +58,8 @@ class App extends Component {
                 onClick = {this.onClick}
                 currentQuestion = {this.props.currentQuestion}
                 score = {this.props.score}
-                finished = {this.props.finished}/>
+                finished = {this.props.finished}
+                final = {this.final}/>
                 
       </div>
       

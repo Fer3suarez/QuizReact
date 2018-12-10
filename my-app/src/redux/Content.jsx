@@ -10,9 +10,13 @@ export default class Content extends React.Component {
 	constructor(props) {
 		super(props);
 		this.contentOnAnswer = this.contentOnAnswer.bind(this);
+		this.final = this.final.bind(this);
 	}
 	contentOnAnswer(input) {
 		this.props.gameOnAnswer(input);
+	}
+	final(finalTime) {
+		this.props.final(finalTime);
 	}
 	render() {
 		if (this.props.finished === true) {
@@ -28,7 +32,7 @@ export default class Content extends React.Component {
 		return(
 			<div id="contentAll">
 				<img id="imagen" src = {this.props.gameQuestion.attachment.url} alt="imag"/>
-				<Countdown startCount= '45'/>
+				<Countdown final = {this.final}/>
 				<div id="content">
 					<Question question = {this.props.gameQuestion} currentQuestion = {this.props.currentQuestion}/>
 					<Answer contentOnAnswer = {this.contentOnAnswer}
