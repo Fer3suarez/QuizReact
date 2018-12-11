@@ -8,6 +8,7 @@ export default class Game extends React.Component {
 		this.gameOnAnswer = this.gameOnAnswer.bind(this);
 		this.onClick = this.onClick.bind(this);
 		this.final = this.final.bind(this);
+	//	this.start = this.start.bind(this);
 	}
 	gameOnAnswer(input) {
 		this.props.appOnAnswer(input);
@@ -18,6 +19,9 @@ export default class Game extends React.Component {
 	final(finalTime) {
 		this.props.final(finalTime);
 	}
+	//start(sec) {
+	//	this.start(sec);
+	//}
 	render() {
 		return(
       	<div id="game">

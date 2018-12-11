@@ -35,6 +35,7 @@ class App extends Component {
        this.props.dispatch(submit(this.props.questions));
     }
     if (buttonName === "Play Again"){
+       
        this.download();
     }
     if (buttonName === "Next") {

@@ -4,7 +4,6 @@ export const SUBMIT = 'SUBMIT';
 export const INIT_QUESTIONS = 'INIT_QUESTIONS';
 
 
-
 export function questionAnswer(index, answer) {
 	return { 
 		type: QUESTION_ANSWER,

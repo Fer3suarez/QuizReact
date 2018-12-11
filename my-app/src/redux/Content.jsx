@@ -11,6 +11,7 @@ export default class Content extends React.Component {
 		super(props);
 		this.contentOnAnswer = this.contentOnAnswer.bind(this);
 		this.final = this.final.bind(this);
+	//	this.start = this.start.bind(this);
 	}
 	contentOnAnswer(input) {
 		this.props.gameOnAnswer(input);
@@ -18,6 +19,9 @@ export default class Content extends React.Component {
 	final(finalTime) {
 		this.props.final(finalTime);
 	}
+	//start(sec) {
+	//	this.props.start(sec);
+	//}
 	render() {
 		if (this.props.finished === true) {
 			return(
