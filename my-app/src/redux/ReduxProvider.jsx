@@ -1,9 +1,11 @@
 import { Provider } from 'react-redux';
 import GlobalState from '../reducers/reducers';
 import { createStore } from 'redux';
+import thunk from 'redux-thunk';
 import React from 'react';
 import App from './App';
 import { questions } from '../assets/mock-data';
+import { applyMiddleware } from 'redux';
 
 export default class ReduxProvider extends React.Component {
 	constructor(props) {
@@ -12,7 +14,12 @@ export default class ReduxProvider extends React.Component {
 			score: 0,
 			finished: false,
 			currentQuestion: 0,
-			questions: [ ...questions ]
+			questions: [ ...questions ],
+			countDown: {
+				min: 0,
+				sec: 50,
+				running: false
+			}
 		};
 		this.store = this.configureStore(); 
 	}
@@ -29,6 +36,6 @@ export default class ReduxProvider extends React.Component {
 	}
 
 	configureStore() {
-		return createStore(GlobalState, this.initialState);
+		return createStore(GlobalState, this.initialState, applyMiddleware(thunk));
 	}
 }

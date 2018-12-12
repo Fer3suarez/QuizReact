@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux';
-import { QUESTION_ANSWER, CHANGE_QUESTION, SUBMIT, INIT_QUESTIONS} from './actions';
+import { QUESTION_ANSWER, CHANGE_QUESTION, SUBMIT, INIT_QUESTIONS, COUNT_DOWN} from './actions';
 
 function score(state = 0, action = {}) {
 	switch(action.type) {
@@ -57,41 +57,46 @@ function questions(state = [], action = {}) {
 			return state;
 	}
 }
-/*function countdown(state = {count: 45, running: false}, action = {}) {
+function countDown(state = {}, action = {}) {
 	switch(action.type) {
 		case QUESTION_ANSWER: 
-			return {count : state.count, running: true};
-				case INIT_QUESTIONS:
-					return {count : 45, running: false};
-				case COUNT_DOWN:
-					var newState = tick(state);
-					return newState
+			return {min: state.min, sec: state.sec, running: true};
+		case INIT_QUESTIONS:
+			return {min: 0, sec: 50, running: false};
+		case COUNT_DOWN:
+			var newState = tick(state);
+			return newState;
 		default:
 			return state;
 
 	}
 }
-*/
-//function tick(state) {
-//
-//	var newState;
-//
-//	if (state.count === 0){
-//
-//		 newState = {count: 0, running: false};
-//
-//	} else {
-//		 newState = {seconds: state.seconds - 1, running: true};
-//	}
-//
-//	return newState;
-//}
+
+function tick(state) {
+
+	var newState;
+
+	if(state.sec === 0 && state.min === 0) {
+
+		newState = {min: 0, sec: 0, running: false};
+
+	} else  if (state.sec === 0){
+
+		 newState = {min: state.min -1 , sec: 59, running: true};
+
+	} else {
+		 newState = {min: state.min, sec: state.sec - 1, running: true};
+	}
+
+	return newState;
+}
 
 const GlobalState = (combineReducers({
 	score,
 	finished,
 	currentQuestion,
-	questions
+	questions,
+	countDown
 }));
 
 export default GlobalState;

@@ -3,7 +3,7 @@ import '../assets/styles/App.css';
 import { connect } from 'react-redux';
 import Game from './Game.jsx';
 import Navbar from './Navbar.jsx';
-import {questionAnswer, changeQuestion, submit, initQuestions} from '../reducers/actions';
+import {questionAnswer, changeQuestion, submit, initQuestions, countDown, createCD} from '../reducers/actions';
 
 
 const URL = 'https://quiz2019.herokuapp.com/api/quizzes/random10wa?token=c4df4b1db46e9d2e419b';
@@ -14,10 +14,16 @@ class App extends Component {
     this.appOnAnswer = this.appOnAnswer.bind(this);
     this.onClick = this.onClick.bind(this);
     this.download = this.download.bind(this);
-    this.final = this.final.bind(this);
+    //this.createCD = this.createCD.bind(this);
+    //this.final = this.final.bind(this);
   }
   componentDidMount() {
       this.download();
+  }
+  componentDidUpdate() {
+      if (this.props.countDown.min === 0 && this.props.countDown.sec === 0) {  //import applyMiddleware
+        this.onClick("Submit");
+      }
   }
   download() {
     fetch(URL)
@@ -26,16 +32,25 @@ class App extends Component {
         this.props.dispatch(initQuestions(questions));
       })
   }
-
+  
+  /*createCD(interval) {
+    return (dispatch) => {
+      setInterval( () => {
+        this.props.dispatch(countDown());
+      }, 1000);
+    }
+  }*/
   appOnAnswer(answer) {
     this.props.dispatch(questionAnswer(this.props.currentQuestion, answer));
+    if (!this.props.countDown.running){
+      this.props.dispatch(createCD());    
+    }
   }
   onClick(buttonName){
     if (buttonName === "Submit"){
        this.props.dispatch(submit(this.props.questions));
     }
     if (buttonName === "Play Again"){
-       
        this.download();
     }
     if (buttonName === "Next") {
@@ -44,11 +59,12 @@ class App extends Component {
       this.props.dispatch(changeQuestion(buttonName));
     }
   }  
-  final(finalTime) {
+  /*final(finalTime) {
     if (finalTime === true) {
       this.props.dispatch(submit(this.props.questions));
     }
   }
+  */
 
   render() {
     return ( 
@@ -60,7 +76,7 @@ class App extends Component {
                 currentQuestion = {this.props.currentQuestion}
                 score = {this.props.score}
                 finished = {this.props.finished}
-                final = {this.final}/>
+                countDown = {this.props.countDown}/>
                 
       </div>
       

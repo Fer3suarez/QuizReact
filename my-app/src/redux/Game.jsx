@@ -7,7 +7,7 @@ export default class Game extends React.Component {
 		super(props);
 		this.gameOnAnswer = this.gameOnAnswer.bind(this);
 		this.onClick = this.onClick.bind(this);
-		this.final = this.final.bind(this);
+	//	this.final = this.final.bind(this);
 	//	this.start = this.start.bind(this);
 	}
 	gameOnAnswer(input) {
@@ -16,9 +16,9 @@ export default class Game extends React.Component {
 	onClick(buttonName) {
 		this.props.onClick(buttonName);
 	}
-	final(finalTime) {
-		this.props.final(finalTime);
-	}
+	//final(finalTime) {
+	//	this.props.final(finalTime);
+	//}
 	//start(sec) {
 	//	this.start(sec);
 	//}
@@ -30,7 +30,7 @@ export default class Game extends React.Component {
 			  		 score = {this.props.score}
 			   		 finished = {this.props.finished}
 			    	 currentQuestion = {this.props.currentQuestion}
-			    	 final = {this.final}/>
+			    	 countDown = {this.props.countDown}/>
 			<Actionbar onClick = {this.onClick}
 					   currentQuestion = {this.props.currentQuestion}
 					   finished = {this.props.finished}
