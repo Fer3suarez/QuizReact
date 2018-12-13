@@ -20,6 +20,7 @@
   }
 }
 #app {
+  height: 100%;
   background-color: #B3C6E1;
   background-attachment: fixed;
   background-size: cover;
@@ -104,7 +105,7 @@
 }
 #content {
   display: block;
-  padding: 50px;
+  padding: 10px;
   margin-top: 20px;
   margin-bottom: 30px;
   margin-left: 50px;

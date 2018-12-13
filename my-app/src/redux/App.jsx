@@ -3,7 +3,7 @@ import '../assets/styles/App.css';
 import { connect } from 'react-redux';
 import Game from './Game.jsx';
 import Navbar from './Navbar.jsx';
-import {questionAnswer, changeQuestion, submit, initQuestions, countDown, createCD} from '../reducers/actions';
+import {questionAnswer, changeQuestion, submit, initQuestions} from '../reducers/actions';
 
 
 const URL = 'https://quiz2019.herokuapp.com/api/quizzes/random10wa?token=c4df4b1db46e9d2e419b';
@@ -15,22 +15,23 @@ class App extends Component {
     this.onClick = this.onClick.bind(this);
     this.download = this.download.bind(this);
     //this.createCD = this.createCD.bind(this);
-    //this.final = this.final.bind(this);
+    this.final = this.final.bind(this);
   }
   componentDidMount() {
       this.download();
   }
-  componentDidUpdate() {
+  /*componentDidUpdate() {
       if (this.props.countDown.min === 0 && this.props.countDown.sec === 0) {  //import applyMiddleware
         this.onClick("Submit");
       }
-  }
+  }*/
   download() {
     fetch(URL)
       .then(res => res.json())
         .then((questions) => {
         this.props.dispatch(initQuestions(questions));
       })
+      .catch(err => console.error(err));
   }
   
   /*createCD(interval) {
@@ -42,9 +43,9 @@ class App extends Component {
   }*/
   appOnAnswer(answer) {
     this.props.dispatch(questionAnswer(this.props.currentQuestion, answer));
-    if (!this.props.countDown.running){
+    /*if (!this.props.countDown.running){
       this.props.dispatch(createCD());    
-    }
+    }*/
   }
   onClick(buttonName){
     if (buttonName === "Submit"){
@@ -59,12 +60,12 @@ class App extends Component {
       this.props.dispatch(changeQuestion(buttonName));
     }
   }  
-  /*final(finalTime) {
+  final(finalTime) {
     if (finalTime === true) {
       this.props.dispatch(submit(this.props.questions));
     }
   }
-  */
+  
 
   render() {
     return ( 
@@ -76,7 +77,7 @@ class App extends Component {
                 currentQuestion = {this.props.currentQuestion}
                 score = {this.props.score}
                 finished = {this.props.finished}
-                countDown = {this.props.countDown}/>
+                final = {this.final}/>
                 
       </div>
       

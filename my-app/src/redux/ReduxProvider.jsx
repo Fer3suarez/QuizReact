@@ -14,12 +14,12 @@ export default class ReduxProvider extends React.Component {
 			score: 0,
 			finished: false,
 			currentQuestion: 0,
-			questions: [ ...questions ],
-			countDown: {
+			questions: [ ...questions ]
+			/*countDown: {
 				min: 0,
 				sec: 50,
 				running: false
-			}
+			}*/
 		};
 		this.store = this.configureStore(); 
 	}
@@ -36,6 +36,6 @@ export default class ReduxProvider extends React.Component {
 	}
 
 	configureStore() {
-		return createStore(GlobalState, this.initialState, applyMiddleware(thunk));
+		return createStore(GlobalState, this.initialState); //applyMiddleware(thunk)
 	}
 }

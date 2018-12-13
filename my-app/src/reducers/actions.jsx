@@ -2,7 +2,7 @@ export const QUESTION_ANSWER = 'QUESTION_ANSWER';
 export const CHANGE_QUESTION = 'CHANGE_QUESTION';
 export const SUBMIT = 'SUBMIT';
 export const INIT_QUESTIONS = 'INIT_QUESTIONS';
-export const COUNT_DOWN = 'COUNT_DOWN';
+//export const COUNT_DOWN = 'COUNT_DOWN';
 
 
 export function questionAnswer(index, answer) {
@@ -32,12 +32,13 @@ export function initQuestions(questions) {
 		payload: { questions }
 	};
 }
-
+/*
 export function countDown() {
 	return {
 		type: COUNT_DOWN
 	};
 }
+
 export const createCD = (interval) => {
 	return (dispatch) => {
       	setInterval( () => {
@@ -45,5 +46,4 @@ export const createCD = (interval) => {
       }, 1000);
 	}
 }
-
-
+*/
